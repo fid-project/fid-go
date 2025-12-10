@@ -1,22 +1,13 @@
 # FID (Fast Identifier) for Go
 
-This module implements the FID spec: a monotonic, 64-bit identifier format designed for distributed systems that need sortable IDs, optional categorisation, and resilient textual encoding. The binary layout is:
+This module implements the FID spec: a monotonic, 64-bit identifier format designed for distributed systems that need sortable IDs, optional categorisation, and resilient textual encoding.
 
-```
-[ kind:8 | timestamp_ms:43 | node:8 | counter:5 ]
-```
-
-- **Kind (8 bits)** – free-form type code that lets callers bucket IDs by product domain.
-- **Timestamp (43 bits)** – milliseconds elapsed since the custom epoch `2025-05-15T00:00:00Z`, keeping IDs naturally ordered.
-- **Node (8 bits)** – stable per-process identifier so parallel writers can coordinate without talking to each other.
-- **Counter (5 bits)** – per-millisecond sequence that prevents collisions inside the same node and clock tick.
-
-The canonical text form is Crockford Base32 with optional separators, normalised to `13` body characters plus a `1`-character check digit (total `14`). The check digit uses the FID check alphabet (`0123456789ABCDEFGHJKMNPQRSTVWXYZ*~$=U`) so corrupted or truncated IDs can be detected early.
+The spec can be found at github.com/fid-project/fid
 
 ## Getting Started
 
 ```
-go get github.com/you/fid
+go get github.com/fid-project/fid-go
 ```
 
 Use `fid.New` to generate IDs and `fid.Parse` to round-trip from strings:
@@ -27,7 +18,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/you/fid"
+	"github.com/fid-project/fid-go"
 )
 
 func main() {
