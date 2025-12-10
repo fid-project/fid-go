@@ -1,8 +1,8 @@
-# FID (Fast Identifier) for Go
+# FID for Go
 
 This module implements the FID spec: a monotonic, 64-bit identifier format designed for distributed systems that need sortable IDs, optional categorisation, and resilient textual encoding.
 
-The spec can be found at github.com/fid-project/fid
+The spec can be found at <https://github.com/fid-project/fid-spec>
 
 ## Getting Started
 
