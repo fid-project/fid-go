@@ -31,3 +31,13 @@ func TestNodeIDFallback(t *testing.T) {
 		t.Error("expected nonzero nodeID from fallback derivation")
 	}
 }
+
+func TestSetNodeID(t *testing.T) {
+	const expected = 123
+
+	SetNodeID("123")
+
+	if got := NodeID(); got != expected {
+		t.Fatalf("nodeID override failed: got %d, want %d", got, expected)
+	}
+}

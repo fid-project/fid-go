@@ -34,6 +34,21 @@ func InitNodeID() {
 	}
 }
 
+func SetNodeID(id string) {
+	switch {
+	case isNumeric(id):
+		v, _ := strconv.Atoi(id)
+		if v >= 0 && v <= 255 {
+			nodeId = uint8(v)
+		} else {
+			nodeId = fnv1a8([]byte(id))
+		}
+
+	default:
+		nodeId = fnv1a8([]byte(id))
+	}
+}
+
 func init() {
 	InitNodeID()
 }
